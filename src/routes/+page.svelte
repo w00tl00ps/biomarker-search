@@ -6,35 +6,41 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="CCO Biomarker Search" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
 
-		to your new<br />SvelteKit app
-	</h1>
+<div class="drawer lg:drawer-open">
+	<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+	<div class="drawer-content flex flex-col items-center justify-center">
+		<!-- Page content here -->
+		<div class="flex flex-row">
+			<!-- Search box -->
+			<input type="text" placeholder="Search" class="input input-bordered input-primary w-full max-w-xs" />
+			<!-- Search filters drawer button-->
+			<label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Search Filters</label>
+		</div>
+		
+		<section>
+			<p>Display search results here</p>
+		</section>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	
+	</div> 
+	<div class="drawer-side top-20">
+		<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label> 
+		<ul class="menu p-4 w-80 bg-base-200 text-base-content">
+		<!-- Sidebar content here -->
+		<li>Search Filters Here</li>
+		<li><a>Sidebar Item 1</a></li>
+		<li><a>Sidebar Item 2</a></li>
+		</ul>
+	
+	</div>
+</div>
+	
 
-	<Counter />
 
-	<button class="btn">Button</button>
-	<button class="btn btn-neutral">Neutral</button>
-	<button class="btn btn-primary">Primary</button>
-	<button class="btn btn-secondary">Secondary</button>
-	<button class="btn btn-accent">Accent</button>
-	<button class="btn btn-ghost">Ghost</button>
-	<button class="btn btn-link">Link</button>
-</section>
 
 <style>
 	section {
@@ -45,23 +51,4 @@
 		flex: 0.6;
 	}
 
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
 </style>

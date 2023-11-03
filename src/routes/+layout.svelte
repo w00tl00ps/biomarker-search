@@ -2,6 +2,8 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { webVitals } from '$lib/vitals';
+	import logo from '$lib/images/svelte-logo.svg';
+	import github from '$lib/images/github.svg';
 	import Header from './Header.svelte';
 	import './styles.css';
 	import "../app.css";
@@ -27,7 +29,17 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<div class="corner">
+			<a href="https://kit.svelte.dev">
+				<img src={logo} alt="SvelteKit" />
+			</a>
+		</div>
+		<p>Built using SvelteKit <a href="https://kit.svelte.dev">kit.svelte.dev</a></p>
+		<div class="corner">
+			<a href="https://github.com/w00tl00ps/biomarker-search">
+				<img src={github} alt="GitHub" />
+			</a>
+		</div>
 	</footer>
 </div>
 
@@ -51,7 +63,7 @@
 
 	footer {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 		padding: 12px;
@@ -65,5 +77,24 @@
 		footer {
 			padding: 12px 0;
 		}
+	}
+
+	.corner {
+		width: 3em;
+		height: 3em;
+	}
+
+	.corner a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	.corner img {
+		width: 2em;
+		height: 2em;
+		object-fit: contain;
 	}
 </style>
