@@ -8,8 +8,13 @@ export const load = async function() {
 
     // fix error because _id field in MongoDB is a non-POJO object
     const cleanedData = data.map( d => ({
-            ...d,
-            _id: d._id.toString()
+            _id: d._id.toString(),
+            ShortName: d.ShortName,
+            OrganSite: d.OrganSite,
+            Biomarkers: d.Biomarkers,
+            Indication: d['Testing Indication'],
+            FundedDate: d['CCO Funded Date'],
+            TestingSite: d['Testing Sites']
         }))
 
     return { biomarkers: cleanedData };

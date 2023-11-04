@@ -3,6 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
+	/** @type {import('./$types').PageData} */
 	export let data; // PageData type
 	
 	$: ({biomarkers} = data) // destructure the data prop to extract biomarkers array
@@ -23,9 +24,9 @@
 		<ul>
 			<li>{biomarker.OrganSite}</li>
 			<li>{biomarker.Biomarkers}</li>
-			<li>{biomarker['Testing Indication']}</li>
-			<li>{biomarker['CCO Funded Date']}</li>
-			<li>{biomarker['Testing Sites']}</li>
+			<li>{biomarker.Indication}</li>
+			<li>{biomarker.FundedDate}</li>
+			<li>{biomarker.TestingSite}</li>
 		</ul>
 	{/each}
 	
