@@ -2,6 +2,11 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+
+	export let data; // PageData type
+	
+	$: ({biomarkers} = data) // destructure the data prop to extract biomarkers array
+
 </script>
 
 <svelte:head>
@@ -12,8 +17,11 @@
 
 <div class="flex flex-col justify-center content-center w-full max-w-screen-xl">
 	<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" />
-	<p>Search results go here</p>
-	<p>Multiple search results in a column</p>
+
+	{#each biomarkers as biomarker}
+		<p>{biomarker.Biomarkers}</p>
+	{/each}
+	
 </div>
 
 
