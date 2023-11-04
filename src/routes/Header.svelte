@@ -3,7 +3,7 @@
 </script>
 
 <header>
-	<div class="navbar bg-base-300">
+	<div class="navbar bg-primary text-primary-content">
 		<div class="navbar-start">
 		  <a class="btn btn-ghost normal-case text-xl">CCO Biomarker Search</a>
 		</div>
