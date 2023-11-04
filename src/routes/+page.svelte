@@ -19,7 +19,14 @@
 	<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" />
 
 	{#each biomarkers as biomarker}
-		<p>{biomarker.Biomarkers}</p>
+		<p>{biomarker.ShortName}</p>
+		<ul>
+			<li>{biomarker.OrganSite}</li>
+			<li>{biomarker.Biomarkers}</li>
+			<li>{biomarker['Testing Indication']}</li>
+			<li>{biomarker['CCO Funded Date']}</li>
+			<li>{biomarker['Testing Sites']}</li>
+		</ul>
 	{/each}
 	
 </div>
