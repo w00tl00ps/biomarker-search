@@ -9,6 +9,7 @@
 	$: ({biomarkers} = data) // destructure the data prop to extract biomarkers array
 
 	// BIOMARKER SEARCH
+	/** @type {string} */
 	let searchString; // from textbox
 
 	async function queryBiomarkers() {
