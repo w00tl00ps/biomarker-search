@@ -8,16 +8,30 @@ import { json } from '@sveltejs/kit';
 
 import { biomarkers } from '../../../db/biomarkers';
 
-/** @type {import('./$types').RequestHandler} */
+/** @type {import('../testdb/$types').RequestHandler} */
 export async function GET({url}) {
 
+    // get the search string
     const searchString = url.searchParams.get("search");
     console.log(searchString);
 
-    // define the aggregation pipeline parameters
+    const searchOrganSite = url.searchParams.get("organSite");
+    console.log("Organ Site:", searchOrganSite);
+
+    // filter organ sites, if defined in query parameter
+    let matchOrganSite 
+    if (searchOrganSite) {
+        matchOrganSite = searchOrganSite
+    }
+    else {
+        matchOrganSite = {'$exists': true };
+    }
+    
+
+    // create the aggregation pipeline
     const agg = [
         {
-          '$search': {
+            '$search': {
             'index': 'cco-biomarker-search-index', 
             'text': {
               'query': searchString, 
@@ -26,6 +40,11 @@ export async function GET({url}) {
               }
             }
           }
+        },
+        {
+            '$match': {
+                'OrganSite': matchOrganSite
+            }
         }
       ];
 
@@ -43,7 +62,7 @@ export async function GET({url}) {
     }))
 
 
-    console.log(cleanedData);
+    //console.log(cleanedData);
 
     return json(cleanedData);   
 }
