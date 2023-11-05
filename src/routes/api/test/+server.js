@@ -1,4 +1,8 @@
-// api/test API endpoint to test functionality in SvelteKit
+/**
+ * api/test
+ * 
+ * API endpoint to test basic GET functionality in SvelteKit
+ */
 
 import { json } from '@sveltejs/kit';
 
