@@ -14,7 +14,7 @@ export async function GET({url}) {
 
     // get the search string
     const searchString = url.searchParams.get("search");
-    console.log(searchString);
+    console.log("Search String:", searchString);
 
     const searchOrganSite = url.searchParams.get("organSite");
     console.log("Organ Site:", searchOrganSite);
