@@ -2,6 +2,7 @@ import { biomarkers } from "../db/biomarkers";
 
 /** @type {import('./$types').PageLoad} */
 export const load = async function() {
+    console.log("routes/+page.svelte loaded");
     // get all records from collection
     const data = await biomarkers.find({}).toArray(); 
     //console.log('data', data);
