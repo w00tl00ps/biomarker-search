@@ -1,5 +1,6 @@
 /**
- * api/testdb
+ * api/biomarkers
+ * query parameters: search, and organSite
  * 
  * API endpoint to test a database query with a search string
  */
@@ -51,6 +52,7 @@ export async function GET({url}) {
     // run the mongoDB query based on the search parameters
     const data = await biomarkers.aggregate(agg).toArray();
 
+    // create a cleaned copy of the search results
     const cleanedData = data.map( d => ({
         _id: d._id.toString(),
         ShortName: d.ShortName,
@@ -61,8 +63,7 @@ export async function GET({url}) {
         TestingSite: d['Testing Sites']
     }))
 
-
-    //console.log(cleanedData);
-
+    // return the Array of search results
+    // DEBUG: console.log(cleanedData);
     return json(cleanedData);   
 }
