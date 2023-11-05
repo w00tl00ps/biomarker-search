@@ -2,6 +2,7 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import BiomarkerCard from '../components/BiomarkerCard.svelte';
 
 	// INITIAL DATA ON PAGE LOAD
 	/** @type {import('./$types').PageData} */
@@ -29,18 +30,19 @@
 
 
 <div class="flex flex-col justify-center content-center w-full max-w-screen-xl">
-	<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
-	<button class="btn btn-primary" on:click={queryBiomarkers}>Search</button>
 
+	<!-- SEARCH BAR -->
+	<div class="flex flex-row">
+		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
+		<button class="btn btn-primary" on:click={queryBiomarkers}>Search</button>
+	</div>
+	<div>
+		Placeholder for additional filter options.
+	</div>
+	
+	<!-- SEARCH RESULTS -->
 	{#each biomarkers as biomarker}
-		<p>{biomarker.ShortName}</p>
-		<ul>
-			<li>{biomarker.OrganSite}</li>
-			<li>{biomarker.Biomarkers}</li>
-			<li>{biomarker.Indication}</li>
-			<li>{biomarker.FundedDate}</li>
-			<li>{biomarker.TestingSite}</li>
-		</ul>
+		<BiomarkerCard biomarkerData={biomarker}/>
 	{/each}
 	
 </div>
