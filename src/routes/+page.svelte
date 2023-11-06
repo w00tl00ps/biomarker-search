@@ -50,8 +50,8 @@
 
 
 <style>
-/* for troubleshooting element placement */
+/* for troubleshooting element placement 
 p {
 	border: 1px solid white;
-}
+} */
 </style>
