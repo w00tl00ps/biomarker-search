@@ -1,20 +1,39 @@
 <script>
+	import { each } from "svelte/internal";
+
     /** @type {any} */
     export let biomarkerData;
+
+    // split the testing sites into an array
+    $: testingSites = biomarkerData.TestingSite.split("\n").sort();
+    $: console.log(testingSites);
 </script>
 
 
 <div class="stats bg-neutral m-2">
     <div class="stat">
         <div class="flex flex-row justify-between">
-            <div class="stat-value">{biomarkerData.ShortName}</div>
+            <div class="card-title">{biomarkerData.ShortName}</div>
             <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
         </div>
         
-        <div class="badge-primary mt-2 mb-2 p-1">{biomarkerData.Biomarkers}</div>
+        <div class="badge-primary my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
         <div class="p-1">{biomarkerData.Indication}</div>
+        
+        <div class="collapse collapse-plus border bg-neutral border-primary my-2">
+            <input type="checkbox"/> 
+            <div class="collapse-title">
+              Testing Sites
+            </div>
+            <div class="collapse-content"> 
+              {#each testingSites as testingSite}
+                <ul class="list-disc pl-3">
+                    <li>{testingSite}</li>
+                </ul>
+              {/each}
+            </div>
+          </div>
         <!-- HIDDEN FOR NOW -->
-        <div class="stat-desc hidden">{biomarkerData.TestingSite}</div>
         <div class="stat-desc hidden">{biomarkerData.FundedDate}</div>
     </div>
 </div>
