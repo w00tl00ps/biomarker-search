@@ -33,12 +33,12 @@ export async function GET({url}) {
     const agg = [
         {
             '$search': {
-            'index': 'cco-biomarker-search-index', 
-            'text': {
-              'query': searchString, 
-              'path': {
-                'wildcard': '*'
-              }
+              'index': 'cco-biomarker-search-index', 
+              'text': {
+                'query': `${searchString}`, 
+                'path': {
+                  'wildcard': '*'
+                }
             }
           }
         },
