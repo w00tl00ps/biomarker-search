@@ -12,7 +12,7 @@
 
 <div class="stats bg-neutral m-2">
     <div class="stat">
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}</div>
             <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
         </div>
