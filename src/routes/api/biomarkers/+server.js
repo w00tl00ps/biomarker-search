@@ -60,7 +60,8 @@ export async function GET({url}) {
         Biomarkers: d.Biomarkers,
         Indication: d['Testing Indication'],
         FundedDate: d['CCO Funded Date'],
-        TestingSite: d['Testing Sites']
+        TestingSite: d['Testing Sites'],
+        Notes: d['Notes']
     }))
 
     // return the Array of search results

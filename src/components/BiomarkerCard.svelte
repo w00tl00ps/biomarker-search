@@ -19,7 +19,9 @@
         
         <div class="badge-primary my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
         <div class="p-1">{biomarkerData.Indication}</div>
-        
+        {#if biomarkerData.Notes}
+            <div class="p-1"><i>{biomarkerData.Notes}</i></div>
+        {/if}
         <div class="collapse collapse-plus border bg-neutral border-primary my-2">
             <input type="checkbox"/> 
             <div class="collapse-title">

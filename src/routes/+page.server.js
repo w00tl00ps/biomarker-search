@@ -15,7 +15,8 @@ export const load = async function() {
             Biomarkers: d.Biomarkers,
             Indication: d['Testing Indication'],
             FundedDate: d['CCO Funded Date'],
-            TestingSite: d['Testing Sites']
+            TestingSite: d['Testing Sites'],
+            Notes: d['Notes']
         }))
 
     return { biomarkers: cleanedData };
