@@ -10,19 +10,19 @@
 </script>
 
 
-<div class="stats bg-neutral m-2">
+<div class="stats bg-base-200 text-base-content shadow-xl m-2">
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}</div>
             <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
         </div>
         
-        <div class="badge-primary my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
+        <div class="badge-accent my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
         <div class="p-1">{biomarkerData.Indication}</div>
         {#if biomarkerData.Notes}
             <div class="p-1"><i>{biomarkerData.Notes}</i></div>
         {/if}
-        <div class="collapse collapse-plus border bg-neutral border-primary my-2">
+        <div class="collapse collapse-plus border border-primary my-2">
             <input type="checkbox"/> 
             <div class="collapse-title">
               Testing Sites
