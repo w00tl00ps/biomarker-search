@@ -9,7 +9,7 @@ import { json } from '@sveltejs/kit';
 
 import { biomarkers } from '../../../db/biomarkers';
 
-/** @type {import('../testdb/$types').RequestHandler} */
+/** @type {import('../biomarkers/$types').RequestHandler} */
 export async function GET({url}) {
 
     // get the search string
