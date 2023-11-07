@@ -6,7 +6,7 @@
 
     // split the testing sites into an array
     $: testingSites = biomarkerData.TestingSite.split("\n").sort();
-    // $: console.log("BiomarkerCard.svelte - testingSites from biomarkerData prop: ", testingSites);
+    
 </script>
 
 
@@ -14,7 +14,14 @@
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}</div>
-            <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
+            
+            <div>
+              {#if testingSites.includes("Markham Stouffville Hospital")}
+                <div class="badge badge-lg badge-success">FUNDED @ MSH</div>
+              {/if}
+              <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
+            </div>
+            
         </div>
         
         <div class="badge-accent my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
