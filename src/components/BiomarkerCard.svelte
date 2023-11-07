@@ -13,12 +13,14 @@
 <div class="stats bg-base-200 text-base-content shadow-xl m-2">
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
-            <div class="card-title">{biomarkerData.ShortName}</div>
-            <!-- BADGES -->
-            <div>
+            <div class="card-title">{biomarkerData.ShortName}
               {#if testingSites.includes("Markham Stouffville Hospital")}
-                <div class="badge badge-lg badge-success">FUNDED @ MSH</div>
-              {/if}
+                <span class="badge badge-md badge-success">FUNDED @ MSH</span>
+              {/if} 
+            </div>
+
+            <div>
+
               <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
             </div>
             
