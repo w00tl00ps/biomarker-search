@@ -6,7 +6,7 @@
 
     // split the testing sites into an array
     $: testingSites = biomarkerData.TestingSite.split("\n").sort();
-    $: console.log(testingSites);
+    // $: console.log("BiomarkerCard.svelte - testingSites from biomarkerData prop: ", testingSites);
 </script>
 
 

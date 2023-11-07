@@ -1,3 +1,20 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-// export const prerender = true;
+
+
+/** @type {import('./$types').PageLoad} */
+export const load = async function( {parent, data, fetch} ) {
+
+    // get the data passed from +.page.server.js
+    await parent();
+    let { biomarkers } = data
+    //console.log("+page.js biomarker data: ", biomarkers);
+
+    // get organ site list from /api/organsites
+    const response = await fetch(`/api/organsites`);
+    const result = await response.json();
+    console.log("/routes/+page.js: GET from /api/organsites", result);
+
+    return {
+        biomarkers,
+        organSites: result
+    }
+}
