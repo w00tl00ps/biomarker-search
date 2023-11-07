@@ -14,10 +14,10 @@ export async function GET({url}) {
 
     // get the search string
     const searchString = url.searchParams.get("search");
-    console.log("Search String:", searchString);
+    console.log("/api/biomarkers/ Search String:", searchString);
 
     const searchOrganSite = url.searchParams.get("organSite");
-    console.log("Organ Site:", searchOrganSite);
+    console.log("/api/biomarkers/ Organ Site:", searchOrganSite);
 
     // filter organ sites, if defined in query parameter
     let matchOrganSite 
@@ -56,7 +56,7 @@ export async function GET({url}) {
       agg.push(matchStage);
     }
   
-    console.log("/api/biomarkers/+server.js: Search pipeline: ", agg);
+    console.log("/api/biomarkers/: Search pipeline: ", agg);
 
     // run the mongoDB query based on the search parameters
     const data = await biomarkers.aggregate(agg).toArray();

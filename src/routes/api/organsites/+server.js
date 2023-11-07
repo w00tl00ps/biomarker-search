@@ -13,7 +13,7 @@ export async function GET() {
 
     const data = await biomarkers.distinct("OrganSite");
 
-    console.log(data);
+    //console.log(data);
 
     return json(data);   
 }
