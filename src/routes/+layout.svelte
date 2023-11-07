@@ -29,12 +29,13 @@
 	</main>
 
 	<footer>
+		<div>2023 Created by Howard Yang</div>
 		<div class="corner">
 			<a href="https://kit.svelte.dev">
 				<img src={logo} alt="SvelteKit" />
 			</a>
 		</div>
-		<p>Built using SvelteKit <a href="https://kit.svelte.dev">kit.svelte.dev</a></p>
+		<p>Built using <a href="https://kit.svelte.dev">SvelteKit - kit.svelte.dev</a></p>
 		<div class="corner">
 			<a href="https://github.com/w00tl00ps/biomarker-search">
 				<img src={github} alt="GitHub" />
