@@ -14,10 +14,12 @@
 	// BIOMARKER SEARCH
 	/** @type {string} */
 	let searchString; // from textbox
+	/** @type {string} */
+	let selectOrganSite; // from select box
 
 	async function queryBiomarkers() {
 		console.log("Search String:", searchString);
-		const response = await fetch(`/api/biomarkers?search=${searchString}`);
+		const response = await fetch(`/api/biomarkers?search=${searchString}&organSite=${selectOrganSite}`);
 		const result = await response.json();
 		console.log("+page.js GET from /api/biomarkers?search: ", result);
 		biomarkers = result;
@@ -34,7 +36,7 @@
 <div class="flex flex-col justify-center content-center w-full max-w-screen-xl">
 
 	<!-- SEARCH BAR -->
-	<select class="select select-primary w-full my-1">
+	<select class="select select-primary w-full my-2" bind:value={selectOrganSite} on:change={queryBiomarkers}>
 		<option disabled selected>Select Organ Site</option>
 		{#each organSites as organSite}
 			<option>{organSite}</option>
@@ -42,10 +44,7 @@
 	</select>
 	<div class="flex flex-row">
 		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
-		<button class="btn btn-primary" on:click={queryBiomarkers}>Search</button>
-	</div>
-	<div>
-		Placeholder for additional filter options.
+		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>Search</button>
 	</div>
 	
 	<!-- SEARCH RESULTS -->
