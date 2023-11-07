@@ -14,7 +14,7 @@
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}</div>
-            
+            <!-- BADGES -->
             <div>
               {#if testingSites.includes("Markham Stouffville Hospital")}
                 <div class="badge badge-lg badge-success">FUNDED @ MSH</div>
@@ -29,6 +29,8 @@
         {#if biomarkerData.Notes}
             <div class="p-1"><i>{biomarkerData.Notes}</i></div>
         {/if}
+
+        <!-- COLLAPSE ELEMENT FOR TESTING SITES -->
         <div class="collapse collapse-plus border border-primary my-2">
             <input type="checkbox"/> 
             <div class="collapse-title">
@@ -42,6 +44,7 @@
               {/each}
             </div>
           </div>
+
         <!-- HIDDEN FOR NOW -->
         <div class="stat-desc hidden">{biomarkerData.FundedDate}</div>
     </div>
