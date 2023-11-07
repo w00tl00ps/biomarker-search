@@ -1,16 +1,16 @@
 <script>
-	import { each } from "svelte/internal";
+  import { fade, fly } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
+  /** @type {any} */
+  export let biomarkerData;
 
-    /** @type {any} */
-    export let biomarkerData;
-
-    // split the testing sites into an array
-    $: testingSites = biomarkerData.TestingSite.split("\n").sort();
+  // split the testing sites into an array
+  $: testingSites = biomarkerData.TestingSite.split("\n").sort();
     
 </script>
 
 
-<div class="stats bg-base-200 text-base-content shadow-xl m-2">
+<div class="stats bg-base-200 text-base-content shadow-xl m-2" transition:fade={{ duration: 1000, easing: quintOut }}>
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}
