@@ -28,26 +28,35 @@ export async function GET({url}) {
         matchOrganSite = {'$exists': true };
     }
     
-
     // create the aggregation pipeline
-    const agg = [
-        {
-            '$search': {
-              'index': 'cco-biomarker-search-index', 
-              'text': {
-                'query': `${searchString}`, 
-                'path': {
-                  'wildcard': '*'
-                }
-            }
-          }
-        },
-        {
-            '$match': {
-                'OrganSite': matchOrganSite
+    let agg = [];
+    const searchStage = {
+        '$search': {
+          'index': 'cco-biomarker-search-index', 
+          'text': {
+            'query': `${searchString}`, 
+            'path': {
+              'wildcard': '*'
             }
         }
-      ];
+      }
+    };
+    
+    const matchStage = {
+      '$match': {
+          'OrganSite': matchOrganSite
+      }
+    };
+
+    // only add aggregation stages if parameters are valid / exists
+    if (searchString != "") {
+      agg.push(searchStage);
+    }
+    if (matchOrganSite) {
+      agg.push(matchStage);
+    }
+  
+    console.log("/api/biomarkers/+server.js: Search pipeline: ", agg);
 
     // run the mongoDB query based on the search parameters
     const data = await biomarkers.aggregate(agg).toArray();

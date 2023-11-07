@@ -18,8 +18,22 @@
 	let selectOrganSite; // from select box
 
 	async function queryBiomarkers() {
-		console.log("Search String:", searchString);
-		const response = await fetch(`/api/biomarkers?search=${searchString}&organSite=${selectOrganSite}`);
+		console.log("/routes/+page.svelte Search String:", searchString);
+		
+		// account for empty search string
+		if (!searchString) {
+			searchString = "";
+		}
+
+		// account for default select value
+		let organSiteSearch;
+		if (selectOrganSite == "Select Organ Site") {
+			organSiteSearch = "";
+		}
+		else {
+			organSiteSearch = selectOrganSite
+		}
+		const response = await fetch(`/api/biomarkers?search=${searchString}&organSite=${organSiteSearch}`);
 		const result = await response.json();
 		console.log("+page.js GET from /api/biomarkers?search: ", result);
 		biomarkers = result;
