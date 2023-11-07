@@ -48,6 +48,12 @@ export async function GET({url}) {
       }
     };
 
+    const sortStage = {
+      $sort: {
+        'ShortName': 1
+      }
+    }
+
     // only add aggregation stages if parameters are valid / exists
     if (searchString != "") {
       agg.push(searchStage);
@@ -55,6 +61,7 @@ export async function GET({url}) {
     if (matchOrganSite) {
       agg.push(matchStage);
     }
+    agg.push(sortStage);
   
     console.log("/api/biomarkers/: Search pipeline: ", agg);
 
