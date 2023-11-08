@@ -1,6 +1,4 @@
 <script>
-  import { fade, fly } from 'svelte/transition';
-  import { quintOut } from 'svelte/easing';
   /** @type {any} */
   export let biomarkerData;
 
@@ -10,7 +8,7 @@
 </script>
 
 
-<div class="stats bg-base-200 text-base-content shadow-xl m-2" transition:fade={{ duration: 1000, easing: quintOut }}>
+<div class="stats bg-base-200 text-base-content shadow-xl m-2 w-full">
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}

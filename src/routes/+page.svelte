@@ -1,19 +1,25 @@
 <script>
-
+	import { fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 	import BiomarkerCard from '../components/BiomarkerCard.svelte';
 
 	// INITIAL DATA ON PAGE LOAD
 	/** @type {import('./$types').PageData} */
 	export let data; // PageData type
-	$: ({biomarkers} = data) // destructure the data prop to extract biomarkers array
-	$: ({organSites} = data)
-	$: console.log("Data from /routes/+page.js:", data);
+	let {biomarkers} = data; // destructure the data prop to extract biomarkers array
+	let {organSites} = data;
+	console.log("Biomarker Data from /routes/+page.js:", data);
+	console.log("organSites Data from /routes/+page.js:", organSites);
+
+	// Debug logging when biomarkers updated (after query)
+	$: console.log("biomarkers list updated", biomarkers);
 
 	// BIOMARKER SEARCH
 	/** @type {string} */
 	let searchString; // from textbox
 	/** @type {string} */
 	let selectOrganSite; // from select box
+
 
 	async function queryBiomarkers() {
 		console.log("/routes/+page.svelte Search String:", searchString);
@@ -34,6 +40,7 @@
 		const response = await fetch(`/api/biomarkers?search=${searchString}&organSite=${organSiteSearch}`);
 		const result = await response.json();
 		console.log("+page.js GET from /api/biomarkers?search: ", result);
+
 		biomarkers = result;
 	}
 
@@ -60,8 +67,14 @@
 	</div>
 	
 	<!-- SEARCH RESULTS -->
-	{#each biomarkers as biomarker}
-		<BiomarkerCard biomarkerData={biomarker}/>
+	{#each biomarkers as biomarker (biomarker._id)}
+		<div 
+			out:fade={{ duration: 400 }}
+			in:fade={{ delay: 400, duration: 400 }}
+			animate:flip={{ delay: 450, duration: 400}}
+		>
+			<BiomarkerCard biomarkerData={biomarker}/>
+		</div>
 	{/each}
 	
 </div>
