@@ -25,16 +25,12 @@
 <div class="app">
 	<Header />
 
-	
-	<main>
-		<!-- key and div elements for page transitions-->
-		{#key data.pathname}
-		<div in:fade={{ duration: 300, delay: 400 }} out:fade={{ duration: 300 }}>
-			<slot />
-		</div>
-		{/key}
+	<!-- key elements for page transitions-->
+	{#key data.pathname}
+	<main in:fade={{ duration: 300, delay: 400 }} out:fade={{ duration: 300 }}>
+		<slot />
 	</main>
-	
+	{/key}
 
 	<footer>
 		<div>2023 Created by Howard Yang</div>
