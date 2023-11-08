@@ -56,7 +56,7 @@
 
 	<!-- SEARCH BAR -->
 	<select class="select select-primary w-full my-2" bind:value={selectOrganSite} on:change={queryBiomarkers}>
-		<option disabled selected>Select Organ Site</option>
+		<option selected>Select Organ Site</option>
 		{#each organSites as organSite}
 			<option>{organSite}</option>
 		{/each}
