@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { webVitals } from '$lib/vitals';
+	import { fade } from 'svelte/transition';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 	import Header from './Header.svelte';
@@ -9,7 +10,7 @@
 	import "../app.css";
 
 
-	/** @type {import('./$types').LayoutServerData} */
+	/** @type {import('./$types').LayoutData} */
 	export let data;
 
 	$: if (browser && data?.analyticsId) {
@@ -24,9 +25,16 @@
 <div class="app">
 	<Header />
 
+	
 	<main>
-		<slot />
+		<!-- key and div elements for page transitions-->
+		{#key data.pathname}
+		<div in:fade={{ duration: 300, delay: 400 }} out:fade={{ duration: 300 }}>
+			<slot />
+		</div>
+		{/key}
 	</main>
+	
 
 	<footer>
 		<div>2023 Created by Howard Yang</div>
