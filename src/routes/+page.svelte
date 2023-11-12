@@ -20,10 +20,10 @@
 	/** @type {string} */
 	let selectOrganSite; // from select box
 	/** @type {boolean} */
-	let checkboxFundedInHouse = false;
+	let checkboxFundedInHouse = false; // from Funded in house checkbox
 	$: console.log("/routes/+page.svelte -> checkboxFundedInHouse", checkboxFundedInHouse);
 
-
+	// function to make GET call to API endpoint for biomarker data
 	async function queryBiomarkers() {
 		console.log("/routes/+page.svelte Search String:", searchString);
 		
@@ -47,10 +47,32 @@
 		biomarkers = result;
 	}
 
+	// APPLY FRONT-END FILTERS TO RESULTS
+	// note: checkboxFundedInHouse is a parameter to trigger reactive call to function when checkbox is clicked
+	/** @type {function(Array<any>, boolean): Array<any>} */
+	const filterBiomarkers = (biomarkers, checkboxFundedInHouse) => {
+
+		const inHouseSite = "Markham Stouffville Hospital"
+
+		// apply funded in-house filter if checked
+		if (checkboxFundedInHouse) { 
+			return biomarkers.filter( (biomarker) => {
+				let testingSites = biomarker.TestingSite.split("\n").sort();
+				if (testingSites.includes(inHouseSite) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			});
+		}
+		return biomarkers;
+	};
+
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Biomarker Search</title>
 	<meta name="description" content="CCO Biomarker Search" />
 </svelte:head>
 
@@ -70,15 +92,15 @@
 		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>Search</button>
 	</div>
 
-	<div class="form-control w-52">
+	<div class="form-control flex flex-row">
 		<label class="cursor-pointer label">
-		  <span class="label-text">Funded In-house</span> 
-		  <input type="checkbox" class="toggle toggle-success" bind:checked={checkboxFundedInHouse} />
+		  <div class="label-text">Funded In-house</div> 
+		  <input type="checkbox" class="toggle toggle-success mx-1" bind:checked={checkboxFundedInHouse} />
 		</label>
 	</div>
 	
 	<!-- SEARCH RESULTS -->
-	{#each biomarkers as biomarker (biomarker._id)}
+	{#each filterBiomarkers(biomarkers, checkboxFundedInHouse) as biomarker (biomarker._id)}
 		<div 
 			out:fade={{ duration: 400 }}
 			in:fade={{ delay: 400, duration: 400 }}
