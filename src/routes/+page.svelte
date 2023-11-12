@@ -21,7 +21,7 @@
 	let selectOrganSite; // from select box
 	/** @type {boolean} */
 	let checkboxFundedInHouse = false;
-	$: console.log(checkboxFundedInHouse);
+	$: console.log("/routes/+page.svelte -> checkboxFundedInHouse", checkboxFundedInHouse);
 
 
 	async function queryBiomarkers() {
