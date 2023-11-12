@@ -19,6 +19,9 @@
 	let searchString; // from textbox
 	/** @type {string} */
 	let selectOrganSite; // from select box
+	/** @type {boolean} */
+	let checkboxFundedInHouse = false;
+	$: console.log(checkboxFundedInHouse);
 
 
 	async function queryBiomarkers() {
@@ -61,15 +64,17 @@
 			<option>{organSite}</option>
 		{/each}
 	</select>
-	<div class="form-control w-52">
-		<label class="cursor-pointer label">
-		  <span class="label-text">Funded In-house</span> 
-		  <input type="checkbox" class="toggle toggle-success" />
-		</label>
-	</div>
+	
 	<div class="flex flex-row my-1">
 		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
 		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>Search</button>
+	</div>
+
+	<div class="form-control w-52">
+		<label class="cursor-pointer label">
+		  <span class="label-text">Funded In-house</span> 
+		  <input type="checkbox" class="toggle toggle-success" bind:checked={checkboxFundedInHouse} />
+		</label>
 	</div>
 	
 	<!-- SEARCH RESULTS -->
