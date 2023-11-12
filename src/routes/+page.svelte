@@ -55,13 +55,19 @@
 <div class="flex flex-col justify-center content-center w-full max-w-screen-xl">
 
 	<!-- SEARCH BAR -->
-	<select class="select select-primary w-full my-2" bind:value={selectOrganSite} on:change={queryBiomarkers}>
+	<select class="select select-primary w-full my-1" bind:value={selectOrganSite} on:change={queryBiomarkers}>
 		<option selected>Select Organ Site</option>
 		{#each organSites as organSite}
 			<option>{organSite}</option>
 		{/each}
 	</select>
-	<div class="flex flex-row">
+	<div class="form-control w-52">
+		<label class="cursor-pointer label">
+		  <span class="label-text">Funded In-house</span> 
+		  <input type="checkbox" class="toggle toggle-success" />
+		</label>
+	</div>
+	<div class="flex flex-row my-1">
 		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
 		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>Search</button>
 	</div>
