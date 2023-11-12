@@ -7,7 +7,7 @@
 		<div class="navbar-start">
 		  <a class="btn btn-ghost normal-case text-xl">CCO Biomarker Search</a>
 		</div>
-		<div class="navbar-center">
+		<div class="navbar-end">
 		  <ul class="menu menu-horizontal px-1">
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
