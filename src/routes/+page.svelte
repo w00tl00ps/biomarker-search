@@ -12,7 +12,7 @@
 	console.log("organSites Data from /routes/+page.js:", organSites);
 
 	// Debug logging when biomarkers updated (after query)
-	$: console.log("biomarkers list updated", biomarkers);
+	$: console.log("/routes/+page.svelte -> biomarkers list updated", biomarkers);
 
 	// BIOMARKER SEARCH
 	/** @type {string} */
