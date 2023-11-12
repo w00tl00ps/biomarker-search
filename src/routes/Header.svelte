@@ -5,7 +5,7 @@
 <header>
 	<div class="navbar bg-primary text-primary-content">
 		<div class="navbar-start">
-		  <a class="btn btn-ghost normal-case text-xl">CCO Biomarker Search</a>
+		  <a class="btn btn-ghost normal-case text-xl" href="/">CCO Biomarker Search</a>
 		</div>
 		<div class="navbar-end">
 		  <ul class="menu menu-horizontal px-1">
