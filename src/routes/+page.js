@@ -11,7 +11,7 @@ export const load = async function( {parent, data, fetch} ) {
     // get organ site list from /api/organsites
     const response = await fetch(`/api/organsites`);
     const result = await response.json();
-    console.log("/routes/+page.js: GET from /api/organsites", result);
+    console.log("/routes/+page.js: GET from /api/organsites");
 
     return {
         biomarkers,

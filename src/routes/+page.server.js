@@ -2,7 +2,7 @@ import { biomarkers } from "../db/biomarkers";
 
 /** @type {import('./$types').PageLoad} */
 export const load = async function() {
-    console.log("routes/+page.svelte loaded");
+    console.log("/routes/+page.server.js -> load()");
     // get all records from collection sorted alphabetically
     const data = await biomarkers.find({}).sort({'ShortName': 1}).toArray(); 
     //console.log('data', data);

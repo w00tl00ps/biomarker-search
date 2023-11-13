@@ -8,11 +8,9 @@
 	export let data; // PageData type
 	let {biomarkers} = data; // destructure the data prop to extract biomarkers array
 	let {organSites} = data;
-	console.log("Biomarker Data from /routes/+page.js:", data);
-	console.log("organSites Data from /routes/+page.js:", organSites);
 
 	// Debug logging when biomarkers updated (after query)
-	$: console.log("/routes/+page.svelte -> biomarkers list updated", biomarkers);
+	$: console.log("/routes/+page.svelte -> biomarkers list updated, length:", biomarkers.length);
 
 	// BIOMARKER SEARCH
 	/** @type {string} */
