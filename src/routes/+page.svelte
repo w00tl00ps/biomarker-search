@@ -8,19 +8,20 @@
 	export let data; // PageData type
 	let {biomarkers} = data; // destructure the data prop to extract biomarkers array
 	let {organSites} = data;
-	console.log("Biomarker Data from /routes/+page.js:", data);
-	console.log("organSites Data from /routes/+page.js:", organSites);
 
 	// Debug logging when biomarkers updated (after query)
-	$: console.log("biomarkers list updated", biomarkers);
+	$: console.log("/routes/+page.svelte -> biomarkers list updated, length:", biomarkers.length);
 
 	// BIOMARKER SEARCH
 	/** @type {string} */
 	let searchString; // from textbox
 	/** @type {string} */
 	let selectOrganSite; // from select box
+	/** @type {boolean} */
+	let checkboxFundedInHouse = false; // from Funded in house checkbox
+	$: console.log("/routes/+page.svelte -> checkboxFundedInHouse", checkboxFundedInHouse);
 
-
+	// function to make GET call to API endpoint for biomarker data
 	async function queryBiomarkers() {
 		console.log("/routes/+page.svelte Search String:", searchString);
 		
@@ -44,10 +45,32 @@
 		biomarkers = result;
 	}
 
+	// APPLY FRONT-END FILTERS TO RESULTS
+	// note: checkboxFundedInHouse is a parameter to trigger reactive call to function when checkbox is clicked
+	/** @type {function(Array<any>, boolean): Array<any>} */
+	const filterBiomarkers = (biomarkers, checkboxFundedInHouse) => {
+
+		const inHouseSite = "Markham Stouffville Hospital"
+
+		// apply funded in-house filter if checked
+		if (checkboxFundedInHouse) { 
+			return biomarkers.filter( (biomarker) => {
+				let testingSites = biomarker.TestingSite.split("\n").sort();
+				if (testingSites.includes(inHouseSite) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			});
+		}
+		return biomarkers;
+	};
+
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Biomarker Search</title>
 	<meta name="description" content="CCO Biomarker Search" />
 </svelte:head>
 
@@ -55,19 +78,27 @@
 <div class="flex flex-col justify-center content-center w-full max-w-screen-xl">
 
 	<!-- SEARCH BAR -->
-	<select class="select select-primary w-full my-2" bind:value={selectOrganSite} on:change={queryBiomarkers}>
+	<select class="select select-primary w-full my-1" bind:value={selectOrganSite} on:change={queryBiomarkers}>
 		<option selected>Select Organ Site</option>
 		{#each organSites as organSite}
 			<option>{organSite}</option>
 		{/each}
 	</select>
-	<div class="flex flex-row">
+	
+	<div class="flex flex-row my-1">
 		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
 		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>Search</button>
 	</div>
+
+	<div class="form-control flex flex-row">
+		<label class="cursor-pointer label">
+		  <div class="label-text">Funded In-house</div> 
+		  <input type="checkbox" class="toggle toggle-success mx-1" bind:checked={checkboxFundedInHouse} />
+		</label>
+	</div>
 	
 	<!-- SEARCH RESULTS -->
-	{#each biomarkers as biomarker (biomarker._id)}
+	{#each filterBiomarkers(biomarkers, checkboxFundedInHouse) as biomarker (biomarker._id)}
 		<div 
 			out:fade={{ duration: 400 }}
 			in:fade={{ delay: 400, duration: 400 }}
