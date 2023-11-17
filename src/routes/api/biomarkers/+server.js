@@ -30,15 +30,18 @@ export async function GET({url}) {
     
     // create the aggregation pipeline
     let agg = [];
+
+    // allow for partial matches by using $match stage and a RegExp
+    let searchRegex = new RegExp(".*" + searchString + ".*", "i");
     const searchStage = {
-        '$search': {
-          'index': 'cco-biomarker-search-index', 
-          'text': {
-            'query': `${searchString}`, 
-            'path': {
-              'wildcard': '*'
-            }
-        }
+      $match: {
+        $or: [
+          {"OrganSite": searchRegex},
+          {"Biomarkers": searchRegex},
+          {"ShortName": searchRegex},
+          {"Testing Indication": searchRegex}
+        ]
+        
       }
     };
     
