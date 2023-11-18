@@ -16,6 +16,7 @@ export const load = async function() {
             Indication: d['Testing Indication'],
             FundedDate: d['CCO Funded Date'],
             TestingSite: d['Testing Sites'],
+            FundedSites: d['fundedSites'],
             Notes: d['Notes']
         }))
 

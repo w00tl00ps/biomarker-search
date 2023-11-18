@@ -80,10 +80,11 @@ export async function GET({url}) {
         Indication: d['Testing Indication'],
         FundedDate: d['CCO Funded Date'],
         TestingSite: d['Testing Sites'],
+        FundedSites: d['fundedSites'],
         Notes: d['Notes']
     }))
 
     // return the Array of search results
-    // DEBUG: console.log(cleanedData);
+    // DEBUG console.log(cleanedData);
     return json(cleanedData);   
 }

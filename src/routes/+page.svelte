@@ -55,8 +55,7 @@
 		// apply funded in-house filter if checked
 		if (checkboxFundedInHouse) { 
 			return biomarkers.filter( (biomarker) => {
-				let testingSites = biomarker.TestingSite.split("\n").sort();
-				if (testingSites.includes(inHouseSite) ) {
+				if (biomarker.FundedSites.includes(inHouseSite) ) {
 					return true;
 				}
 				else {

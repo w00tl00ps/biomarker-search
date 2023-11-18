@@ -2,9 +2,6 @@
   /** @type {any} */
   export let biomarkerData;
 
-  // split the testing sites into an array
-  $: testingSites = biomarkerData.TestingSite.split("\n").sort();
-    
 </script>
 
 
@@ -12,7 +9,7 @@
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}
-              {#if testingSites.includes("Markham Stouffville Hospital")}
+              {#if biomarkerData.FundedSites.includes("Markham Stouffville Hospital")}
                 <span class="badge badge-md badge-success">FUNDED @ MSH</span>
               {/if} 
             </div>
@@ -37,7 +34,7 @@
               Testing Sites
             </div>
             <div class="collapse-content"> 
-              {#each testingSites as testingSite}
+              {#each biomarkerData.FundedSites.sort() as testingSite}
                 <ul class="list-disc pl-3">
                     <li>{testingSite}</li>
                 </ul>

@@ -16,11 +16,16 @@ const biomarkers = db.getCollection('biomarkers');
 // Simple regex option
 //biomarkers.find({"OrganSite": /.*colo.*/i});
 
-let searchTerm = "";
+let searchTerm = "– ";
 let searchRegex = new RegExp(".*" + searchTerm + ".*", "i");
 
-// Use Regex to Match Results
+// Find within an array
+biomarkers.find({fundedSites: { $elemMatch: { $eq: "Kingston Health Sciences"}}});
 
+
+
+// Use Regex to Match Results
+/*
 const regexSearchResult = biomarkers.aggregate([
   {
     $match: {
@@ -36,3 +41,12 @@ const regexSearchResult = biomarkers.aggregate([
 ]);
 
 console.log(regexSearchResult);
+*/
+
+/* 2023-11-17 Used to update funded site array to correct typos / discrepancies in naming
+biomarkers.update(
+  { fundedSites: "Hamilton Health Sciences/ St. Joseph’s Healthcare Hamilton" }, // Query criteria
+  { $set: { "fundedSites.$": "Hamilton Health Sciences/ St. Joseph's Healthcare Hamilton" } }, // Update operation
+  { multi: true } // To update multiple documents that match the criteria  
+);
+*/
