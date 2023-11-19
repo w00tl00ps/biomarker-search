@@ -4,8 +4,7 @@
 export const load = async function( {fetch} ) {
 
     // get organ site list from /api/organsites
-    const response = await fetch(`/api/organsites`);
-    const result = await response.json();
+    const allOrganSites = (await fetch(`/api/organsites`)).json();
     console.log("/routes/+page.js: GET from /api/organsites");
 
     // get all biomarkers from /api/biomarkers
@@ -14,6 +13,6 @@ export const load = async function( {fetch} ) {
 
     return {
         biomarkers: allBiomarkers,
-        organSites: result
+        organSites: allOrganSites
     }
 }
