@@ -21,9 +21,11 @@ The objective of this app is to create a search of funded CCO biomarker tests as
 
 ### MongoDB Configuration
 
-The connection to the MongoDB is defined in a .env file with the following fields:
+The connection to the MongoDB is defined in a `.env` file with the following fields:
+```bash
 MONGO_URL = URL + credentials to the MongoDB
 MONGO_DB = the name of the database to connect to
+```
 
 Currently, the name of the collection inside the database must be called "biomarkers".
 
