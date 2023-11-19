@@ -1,36 +1,88 @@
-# SvelteKit Demo app
+# CCO Biomarker Search
 
-The official demo app for SvelteKit, hosted on Vercel.
+The objective of this app is to create a search of funded CCO biomarker tests as published on the [CCO website](https://www.cancercareontario.ca/en/cancer-care-ontario/programs/clinical-services/pathology-laboratory-medicine).
 
-## Deploy Your Own
+## Built with
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvercel%2Ftree%2Fmain%2Fexamples%2Fsveltekit-1&project-name=sveltekit-vercel&repository-name=sveltekit-vercel&demo-title=SvelteKit%20%2B%20Vercel&demo-url=https%3A%2F%2Fsveltekit-template.vercel.app%2F)
+1. SvelteKit
+2. TailwindCSS
+3. DaisyUI
+4. MongoDB
+5. Vercel
 
-_Live Example: https://sveltekit-template.vercel.app_
+## Key Features and App Design
 
-## Developing
+1. Search From
+	1. Simple textbox for text search
+	2. Advanced filters: by organ site, by testing site
+	3. Highlight if test funded or not
+2. Display the search results with expandable details for each result
+3. Data is retreived from a MongoDB database
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### MongoDB Configuration
 
-```bash
-npm run dev
+The connection to the MongoDB is defined in a .env file with the following fields:
+MONGO_URL = URL + credentials to the MongoDB
+MONGO_DB = the name of the database to connect to
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+Currently, the name of the collection inside the database must be called "biomarkers".
+
+### MongoDB Data Structure Format
+
+The data is currently stored in the following format. (Not all fields are currently being usd in the app).
+
+```json
+{
+  "_id": {
+    "$oid": "65430bdb6382e17f87770f23"
+  },
+  "OrganSite": "Adrenal Gland",
+  "Biomarkers": "MLH1, MSH2, MSH6, PMS2",
+  "ShortName": "MMR (Adrenal)",
+  "CCO Funded Status": "Funded",
+  "CCO Funded Date": {
+    "$date": "2023-01-31T05:00:00Z"
+  },
+  "Testing Indication": "Reflex testing on newly diagnosed tumours with adrenal cortical carcinoma",
+  "Testing Sites": "Grand River Hospital\nHamilton Health Sciences/ St. Joseph’s Healthcare Hamilton\nHealth Sciences North\nHospital for Sick Children (SickKids)\nKingston Health Sciences Centre\nLakeridge Health\nLondon Health Sciences Centre\nMount Sinai Hospital\nSunnybrook Health Sciences Centre\nThe Ottawa Hospital\nTrillium Health Partners - Credit Valley Site\nUnity Health - St. Michael's Hospital\nUniversity Health Network\nWilliam Osler Health System\nDynacare",
+  "OrganSiteID": 1,
+  "BiomarkerID": 3,
+  "fundedSites": [
+    "Grand River Hospital",
+    "Hamilton Health Sciences/ St. Joseph's Healthcare Hamilton",
+    "Health Sciences North",
+    "Hospital for Sick Children (SickKids)",
+    "Kingston Health Sciences Centre",
+    "Lakeridge Health",
+    "London Health Sciences Centre",
+    "Mount Sinai Hospital",
+    "Sunnybrook Health Sciences Centre",
+    "The Ottawa Hospital",
+    "Trillium Health Partners - Credit Valley Site",
+    "Unity Health - St. Michael's Hospital",
+    "University Health Network",
+    "William Osler Health System",
+    "Dynacare"
+  ]
+}
 ```
 
-## Building
 
-To create a production version of your app:
+## Design Roadmap
 
-```bash
-npm run build
-```
+To-Do list of features to implement:
+ - [ ] Highlight important keywords within the testing indication to improve clarity (e.g. "reflex testing")
+ - [ ] Allow for selecting the in-house institution (currently it is only MSH)
+ - [ ] Sort testing sites by distance to the in-house institution
 
-You can preview the production build with `npm run preview`.
+Completed tasks:
+ - [x] Build link to MongoDB and a simple query
+ - [x] Server query results to a page with basic formatting
+ - [x] Build API endpoints for queries to support search capability
+	 - [x] Build `/api/biomarkers`
+		 - [x] Search string capability
+		 - [x] Allow for filtering by organSite
 
-## Speed Insights
-
-Once deployed on Vercel, you can benefit from [Speed Insights](https://vercel.com/docs/concepts/speed-insights) simply by navigating to Vercel's dashboard, clicking on the 'Speed Insights' tab, and enabling the product.
-
-You will get data once your application will be re-deployed and will receive visitors.
+Build out search capability
+ - [x] Handle text based search from a textbox
+ - [x] Serve results to a simple component
