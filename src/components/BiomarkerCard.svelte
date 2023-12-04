@@ -9,7 +9,7 @@
   function addEmphasis(text) {
     const reflex = /reflex/ig;
 
-    let emphasizedText = text.replaceAll(reflex, `<b class="text-accent">REFLEX</b>`);
+    let emphasizedText = text.replaceAll(reflex, `<b class="badge badge-accent badge-outline">REFLEX</b>`);
     return emphasizedText;
   }
 
