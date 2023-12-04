@@ -78,6 +78,7 @@ To-Do list of features to implement:
  - [ ] Allow for selecting the in-house institution (currently it is only MSH)
  - [ ] Sort testing sites by distance to the in-house institution
  - [ ] Show a list of most recently updated / added tests (based on CCO Funded Date)
+ - [ ] Filter by reflex tests
 
 Completed tasks:
  - [x] Build link to MongoDB and a simple query
