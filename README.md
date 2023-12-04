@@ -74,6 +74,7 @@ The data is currently stored in the following format. (Not all fields are curren
 
 To-Do list of features to implement:
  - [ ] Highlight important keywords within the testing indication to improve clarity (e.g. "reflex testing")
+   - [x] Emphasis on "Reflex Testing" 
  - [ ] Allow for selecting the in-house institution (currently it is only MSH)
  - [ ] Sort testing sites by distance to the in-house institution
  - [ ] Show a list of most recently updated / added tests (based on CCO Funded Date)
