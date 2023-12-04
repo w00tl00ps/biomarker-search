@@ -2,6 +2,17 @@
   /** @type {any} */
   export let biomarkerData;
 
+  /**
+   * 
+   * @param {string} text
+   */
+  function addEmphasis(text) {
+    const reflex = /reflex/ig;
+
+    let emphasizedText = text.replaceAll(reflex, `<b class="text-accent">Reflex</b>`);
+    return emphasizedText;
+  }
+
 </script>
 
 
@@ -22,7 +33,7 @@
         </div>
         
         <div class="badge-accent my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
-        <div class="p-1">{biomarkerData.Indication}</div>
+        <div class="p-1">{@html addEmphasis(biomarkerData.Indication) }</div>
         {#if biomarkerData.Notes}
             <div class="p-1"><i>{biomarkerData.Notes}</i></div>
         {/if}
