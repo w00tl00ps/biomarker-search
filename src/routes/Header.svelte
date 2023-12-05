@@ -10,7 +10,7 @@
 		<div class="navbar-end">
 		  <ul class="menu menu-horizontal px-1">
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+				<a href="/">Search</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
