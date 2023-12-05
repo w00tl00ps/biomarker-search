@@ -3,13 +3,17 @@
   export let biomarkerData;
 
   /**
-   * 
+   * addEmphasis
+   * Parses text and searches for keywords to emphasize with html tags.
    * @param {string} text
    */
   function addEmphasis(text) {
+    let emphasizedText = text;
     const reflex = /reflex/ig;
+    const directedTx = /directed therapy/ig;
 
-    let emphasizedText = text.replaceAll(reflex, `<b class="badge badge-accent badge-outline">REFLEX</b>`);
+    emphasizedText = emphasizedText.replaceAll(reflex, `<b class="badge badge-accent badge-outline">REFLEX</b>`);
+    emphasizedText = emphasizedText.replaceAll(directedTx, '<b>directed therapy</b>');
     return emphasizedText;
   }
 
