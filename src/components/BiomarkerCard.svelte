@@ -5,6 +5,19 @@
   export let testingSite;
 
   /**
+   * abbreviations to improve formatting of badges 
+   * TODO: move to a separate lib module?
+   * @type {any}
+   * */
+  const abbr = {
+    "Markham Stouffville Hospital": "MSH",
+    "Hospital for Sick Children (SickKids)": "SickKids",
+    "North York General Hospital": "NYGH",
+    "Sunnybrook Health Sciences Centre": "Sunnybrook",
+    "University Health Network": "UHN"
+  }
+
+  /**
    * Parses text and searches for keywords to emphasize with html tags.
    * @param {string} text
    */
@@ -26,7 +39,7 @@
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}
               {#if biomarkerData.FundedSites.includes(testingSite)}
-                <span class="badge badge-md badge-success">FUNDED @ {testingSite == "Markham Stouffville Hospital" ? "MSH" : testingSite}</span>
+                <span class="badge badge-md badge-success">FUNDED @ { abbr[testingSite] || testingSite }</span>
               {/if} 
             </div>
              <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
