@@ -5,7 +5,6 @@
   export let testingSite;
 
   /**
-   * addEmphasis
    * Parses text and searches for keywords to emphasize with html tags.
    * @param {string} text
    */

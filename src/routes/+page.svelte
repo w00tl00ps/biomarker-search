@@ -25,7 +25,9 @@
 	$: console.log("/routes/+page.svelte -> checkboxFundedInHouse", checkboxFundedInHouse);
 	$: console.log("/routes/+page.svelte -> selectedTestingSite", selectedTestingSite);
 
-	// function to make GET call to API endpoint for biomarker data
+	/**
+	 * Make GET call to /api/biomarkers API endpoint to search biomarker data
+	 */
 	async function queryBiomarkers() {
 		console.log("/routes/+page.svelte Search String:", searchString);
 		
@@ -49,9 +51,13 @@
 		biomarkers = result;
 	}
 
-	// APPLY FRONT-END FILTERS TO RESULTS
-	// note: checkboxFundedInHouse is a parameter to trigger reactive call to function when checkbox is clicked
-	/** @type {function(Array<any>, boolean, string): Array<any>} */
+	/**
+	 * Apply front-end filters to search results
+	 * 
+	 * note: checkboxFundedInHouse is a parameter to trigger reactive call to function when checkbox is clicked
+	 * 
+	 * @type {function(Array<any>, boolean, string): Array<any>} 
+	*/
 	const filterBiomarkers = (biomarkers, checkboxFundedInHouse, selectedTestingSite) => {
 		// apply funded in-house filter if checked
 		if (checkboxFundedInHouse) { 
