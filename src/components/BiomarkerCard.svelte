@@ -30,12 +30,7 @@
                 <span class="badge badge-md badge-success">FUNDED @ {testingSite == "Markham Stouffville Hospital" ? "MSH" : testingSite}</span>
               {/if} 
             </div>
-
-            <div>
-
-              <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
-            </div>
-            
+             <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
         </div>
         
         <div class="badge-accent my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
