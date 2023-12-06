@@ -1,6 +1,8 @@
 <script>
   /** @type {any} */
   export let biomarkerData;
+  /** @type {string}*/
+  export let testingSite;
 
   /**
    * addEmphasis
@@ -24,8 +26,8 @@
     <div class="stat">
         <div class="flex flex-col sm:flex-row justify-between">
             <div class="card-title">{biomarkerData.ShortName}
-              {#if biomarkerData.FundedSites.includes("Markham Stouffville Hospital")}
-                <span class="badge badge-md badge-success">FUNDED @ MSH</span>
+              {#if biomarkerData.FundedSites.includes(testingSite)}
+                <span class="badge badge-md badge-success">FUNDED @ {testingSite == "Markham Stouffville Hospital" ? "MSH" : testingSite}</span>
               {/if} 
             </div>
 

@@ -113,7 +113,7 @@
 			in:fade={{ delay: 400, duration: 400 }}
 			animate:flip={{ delay: 450, duration: 400}}
 		>
-			<BiomarkerCard biomarkerData={biomarker}/>
+			<BiomarkerCard biomarkerData={biomarker} testingSite={selectedTestingSite}/>
 		</div>
 	{/each}
 	
