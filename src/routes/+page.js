@@ -11,8 +11,12 @@ export const load = async function( {fetch} ) {
     const allBiomarkers = (await fetch('/api/biomarkers?search=')).json();
     console.log("/routes/+page.js: GET from /api/biomarkers?search=");
 
+    const testingSites = (await fetch('/api/funded-sites')).json();
+    console.log("/routes/+page.js: GET from /api/funded-sites");
+
     return {
         biomarkers: allBiomarkers,
-        organSites: allOrganSites
+        organSites: allOrganSites,
+        testingSites
     }
 }

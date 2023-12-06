@@ -8,6 +8,7 @@
 	export let data; // PageData type
 	let {biomarkers} = data; // destructure the data prop to extract biomarkers array
 	let {organSites} = data;
+	let {testingSites} = data;
 
 	// Debug logging when biomarkers updated (after query)
 	$: console.log("/routes/+page.svelte -> biomarkers list updated, length:", biomarkers.length);
@@ -19,7 +20,10 @@
 	let selectOrganSite; // from select box
 	/** @type {boolean} */
 	let checkboxFundedInHouse = false; // from Funded in house checkbox
+	/** @type {string}*/
+	let selectedTestingSite; // from select box
 	$: console.log("/routes/+page.svelte -> checkboxFundedInHouse", checkboxFundedInHouse);
+	$: console.log("/routes/+page.svelte -> selectedTestingSite", selectedTestingSite);
 
 	// function to make GET call to API endpoint for biomarker data
 	async function queryBiomarkers() {
@@ -47,15 +51,12 @@
 
 	// APPLY FRONT-END FILTERS TO RESULTS
 	// note: checkboxFundedInHouse is a parameter to trigger reactive call to function when checkbox is clicked
-	/** @type {function(Array<any>, boolean): Array<any>} */
-	const filterBiomarkers = (biomarkers, checkboxFundedInHouse) => {
-
-		const inHouseSite = "Markham Stouffville Hospital"
-
+	/** @type {function(Array<any>, boolean, string): Array<any>} */
+	const filterBiomarkers = (biomarkers, checkboxFundedInHouse, selectedTestingSite) => {
 		// apply funded in-house filter if checked
 		if (checkboxFundedInHouse) { 
 			return biomarkers.filter( (biomarker) => {
-				if (biomarker.FundedSites.includes(inHouseSite) ) {
+				if (biomarker.FundedSites.includes(selectedTestingSite) ) {
 					return true;
 				}
 				else {
@@ -91,13 +92,22 @@
 
 	<div class="form-control flex flex-row">
 		<label class="cursor-pointer label">
-		  <div class="label-text">Funded In-house</div> 
+		  <div class="label-text">Funded</div> 
 		  <input type="checkbox" class="toggle toggle-success mx-1" bind:checked={checkboxFundedInHouse} />
+		  <div class="label-text">at</div> 
 		</label>
+		<select class="select select-primary my-1" bind:value={selectedTestingSite}>
+			<option selected>Markham Stouffville Hospital</option>
+			{#each testingSites as testingSite}
+				<option>{testingSite}</option>
+			{/each}
+		</select>
+		
+		
 	</div>
 	
 	<!-- SEARCH RESULTS -->
-	{#each filterBiomarkers(biomarkers, checkboxFundedInHouse) as biomarker (biomarker._id)}
+	{#each filterBiomarkers(biomarkers, checkboxFundedInHouse, selectedTestingSite) as biomarker (biomarker._id)}
 		<div 
 			out:fade={{ duration: 400 }}
 			in:fade={{ delay: 400, duration: 400 }}
