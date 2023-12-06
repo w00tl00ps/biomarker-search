@@ -96,7 +96,7 @@
 		  <input type="checkbox" class="toggle toggle-success mx-1" bind:checked={checkboxFundedInHouse} />
 		  <div class="label-text">at</div> 
 		</label>
-		<select class="select select-primary my-1" bind:value={selectedTestingSite}>
+		<select class="select select-primary my-1 w-full" bind:value={selectedTestingSite}>
 			<option selected>Markham Stouffville Hospital</option>
 			{#each testingSites as testingSite}
 				<option>{testingSite}</option>
