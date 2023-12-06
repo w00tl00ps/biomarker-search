@@ -73,7 +73,7 @@ The data is currently stored in the following format. (Not all fields are curren
 ## Design Roadmap
 
 To-Do list of features to implement:
- - [ ] Allow for selecting the in-house institution (currently it is only MSH)
+
  - [ ] Sort testing sites by distance to the in-house institution
  - [ ] Show a list of most recently updated / added tests (based on CCO Funded Date)
  - [ ] Filter by reflex tests
@@ -87,6 +87,7 @@ Completed tasks:
 		 - [x] Allow for filtering by organSite
  - [x] Highlight important keywords within the testing indication to improve clarity (e.g. "reflex testing")
    - [x] Emphasis on "Reflex Testing" 
+ - [x] Allow for selecting and filtering by testing site
 
 Build out search capability
  - [x] Handle text based search from a textbox
