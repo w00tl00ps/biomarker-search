@@ -73,10 +73,11 @@ The data is currently stored in the following format. (Not all fields are curren
 ## Design Roadmap
 
 To-Do list of features to implement:
-
  - [ ] Sort testing sites by distance to the in-house institution
- - [ ] Show a list of most recently updated / added tests (based on CCO Funded Date)
- - [ ] Filter by reflex tests
+
+ Build out search capability
+ - [x] Handle text based search from a textbox
+ - [x] Serve results to a simple component
 
 Completed tasks:
  - [x] Build link to MongoDB and a simple query
@@ -88,7 +89,5 @@ Completed tasks:
  - [x] Highlight important keywords within the testing indication to improve clarity (e.g. "reflex testing")
    - [x] Emphasis on "Reflex Testing" 
  - [x] Allow for selecting and filtering by testing site
+ - [x] Show a list of most recently updated / added tests (based on CCO Funded Date)
 
-Build out search capability
- - [x] Handle text based search from a textbox
- - [x] Serve results to a simple component
