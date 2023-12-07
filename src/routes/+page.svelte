@@ -1,7 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import BiomarkerCard from '../components/BiomarkerCard.svelte';
+	import BiomarkerCard from '$lib/components/BiomarkerCard.svelte';
 
 	// INITIAL DATA ON PAGE LOAD
 	/** @type {import('./$types').PageData} */
