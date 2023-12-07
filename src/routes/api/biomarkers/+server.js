@@ -7,7 +7,7 @@
 
 import { json } from '@sveltejs/kit';
 
-import { biomarkers } from '../../../db/biomarkers';
+import { biomarkers } from '$lib/db/biomarkers';
 
 /** @type {import('../biomarkers/$types').RequestHandler} */
 export async function GET({url}) {
