@@ -27,7 +27,7 @@
 		<div class="navbar-end ">
 			<ul class="menu menu-horizontal px-1">
 				<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-					<a href="/"><iconify-icon icon="ic:baseline-search" width="25" height="25"></iconify-icon>Search</a>
+					<a href="/"><iconify-icon icon="ic:baseline-search" width="25" height="25"></iconify-icon></a>
 				</li>
 			  </ul>
 			<div class="hidden md:flex">
