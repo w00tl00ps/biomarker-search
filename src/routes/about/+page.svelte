@@ -10,6 +10,9 @@
 		This is a web app that serves to catalogue the list of <a href="https://www.cancercareontario.ca/en/cancer-care-ontario/programs/clinical-services/pathology-laboratory-medicine">Funded Molecular Testing in Ontario</a> and display
 		the ever-growing-list in an easy to search format.
 	</p>
+	<p>
+		This web application solely retrieves publicly accessible data and does not store, collect, or have access to any personally identifiable or sensitive health information.
+	</p>
 	<h2>Built With</h2>
 	<div class="not-prose">
 		<img src="https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white" alt="SvelteKit">
