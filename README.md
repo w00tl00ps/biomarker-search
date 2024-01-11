@@ -2,6 +2,8 @@
 
 The objective of this app is to create a search of funded CCO biomarker tests as published on the [CCO website](https://www.cancercareontario.ca/en/cancer-care-ontario/programs/clinical-services/pathology-laboratory-medicine).
 
+This web application solely retrieves publicly accessible data and does not store, collect, or have access to any personally identifiable or sensitive health information.
+
 ## Built with
 
 1. SvelteKit
@@ -31,7 +33,7 @@ Currently, the name of the collection inside the database must be called "biomar
 
 ### MongoDB Data Structure Format
 
-The data is currently stored in the following format. (Not all fields are currently being usd in the app).
+The data is currently stored in the following format. (Not all fields are currently being used in the app).
 
 ```json
 {
