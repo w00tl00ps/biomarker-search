@@ -1,6 +1,8 @@
 <script>
+// @ts-nocheck
+
 	import { page } from '$app/stores';
-	import 'iconify-icon';
+	import 'iconify-icon'; 
 </script>
 
 <header>
@@ -22,7 +24,11 @@
 					</li>
 				</ul>
 			</div>
-		  <a class="btn btn-ghost normal-case text-xl" href="/">CCO Biomarker Search</a>
+		  <a class="btn btn-ghost normal-case text-xl" href="/">CCO Biomarker Search </a>
+		  <div>
+			<!-- svelte-ignore missing-declaration -->
+			<span class="text-xs">v{VERSION}</span>
+		  </div>
 		</div>
 		<div class="navbar-end ">
 			<ul class="menu menu-horizontal px-1">
