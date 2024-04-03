@@ -33,7 +33,7 @@
 	{/key}
 
 	<footer>
-		<div>2023 Created by Howard Yang</div>
+		<div>2024 Created by Howard Yang</div>
 		<div class="corner">
 			<a href="https://kit.svelte.dev">
 				<img src={logo} alt="SvelteKit" />

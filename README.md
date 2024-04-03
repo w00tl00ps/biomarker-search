@@ -71,6 +71,13 @@ The data is currently stored in the following format. (Not all fields are curren
 }
 ```
 
+## Version Highlights
+
+v1.0.1
+ - UI updates
+
+v1.0.0
+ - Initial release
 
 ## Design Roadmap
 
