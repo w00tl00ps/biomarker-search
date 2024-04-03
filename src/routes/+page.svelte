@@ -38,7 +38,7 @@
 
 		// account for default select value
 		let organSiteSearch;
-		if (selectOrganSite == "Select Organ Site") {
+		if (!organSites.includes(selectOrganSite)) {
 			organSiteSearch = "";
 		}
 		else {
@@ -84,17 +84,20 @@
 <div class="flex flex-col justify-center content-center w-full max-w-screen-lg">
 
 	<!-- SEARCH BAR -->
+	<div class="flex flex-row my-1">
+		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
+		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>
+			<iconify-icon icon="ic:baseline-search" width="20" height="20"></iconify-icon>
+		</button>
+	</div>
+
+	<!-- SEARCH FILTERS -->
 	<select class="select select-primary w-full my-1" bind:value={selectOrganSite} on:change={queryBiomarkers}>
-		<option selected>Select Organ Site</option>
+		<option selected>--- Filter by Organ Site ---</option>
 		{#each organSites as organSite}
 			<option>{organSite}</option>
 		{/each}
 	</select>
-	
-	<div class="flex flex-row my-1">
-		<input type="text" placeholder="Search" class="input input-bordered input-primary w-full" bind:value={searchString} on:change={queryBiomarkers}/>
-		<button class="btn btn-primary ml-2" on:click={queryBiomarkers}>Search</button>
-	</div>
 
 	<div class="form-control flex flex-row">
 		<label class="cursor-pointer label">
@@ -113,6 +116,12 @@
 	</div>
 	
 	<!-- SEARCH RESULTS -->
+	<!-- Number of results found -->
+	<div class="flex justify-center">
+		<em class="text-accent">{biomarkers.length} results found</em>
+	</div>
+	
+	<!-- Search Result - Cards -->
 	{#each filterBiomarkers(biomarkers, checkboxFundedInHouse, selectedTestingSite) as biomarker (biomarker._id)}
 		<div 
 			out:fade={{ duration: 400 }}
