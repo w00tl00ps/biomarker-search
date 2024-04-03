@@ -81,7 +81,7 @@
 </svelte:head>
 
 
-<div class="flex flex-col justify-center content-center w-full max-w-screen-xl">
+<div class="flex flex-col justify-center content-center w-full max-w-screen-lg">
 
 	<!-- SEARCH BAR -->
 	<select class="select select-primary w-full my-1" bind:value={selectOrganSite} on:change={queryBiomarkers}>
