@@ -99,19 +99,23 @@
 		{/each}
 	</select>
 
-	<div class="form-control flex flex-row">
-		<label class="cursor-pointer label">
-		  <div class="label-text">Funded</div> 
-		  <input type="checkbox" class="toggle toggle-success mx-1" bind:checked={checkboxFundedInHouse} />
-		  <div class="label-text">at</div> 
-		</label>
+	<div class="flex flex-row">
 		<select class="select select-primary my-1 w-full" bind:value={selectedTestingSite}>
 			<option selected>Markham Stouffville Hospital</option>
 			{#each testingSites as testingSite}
 				<option>{testingSite}</option>
 			{/each}
 		</select>
-		
+		<div class="flex flex-col p-2 items-center">
+			<input type="checkbox" class="toggle toggle-success mx-1" bind:checked={checkboxFundedInHouse} />
+			<p class="text-sm">
+				{#if checkboxFundedInHouse}
+					Filtered
+				{:else}
+					Funded
+				{/if}
+			</p>
+		</div>
 		
 	</div>
 	
@@ -120,7 +124,7 @@
 	<div class="flex justify-center">
 		<em class="text-accent">{biomarkers.length} results found</em>
 	</div>
-	
+
 	<!-- Search Result - Cards -->
 	{#each filterBiomarkers(biomarkers, checkboxFundedInHouse, selectedTestingSite) as biomarker (biomarker._id)}
 		<div 
