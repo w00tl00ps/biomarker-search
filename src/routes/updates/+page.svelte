@@ -6,7 +6,7 @@
     $: console.log(biomarkers);
 </script>
 
-<div class="prose">
+<div class="prose w-full">
     <h2>Recent Updates</h2>
     <p> 
         The list of Funded Molecular Testing in Ontario was last updated on: <span class="badge badge-accent badge-outline">{updateDate}</span>
