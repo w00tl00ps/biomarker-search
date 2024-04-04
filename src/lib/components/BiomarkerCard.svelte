@@ -36,13 +36,16 @@
 
 <div class="stats bg-base-200 text-base-content shadow-xl m-2 w-full">
     <div class="stat">
-        <div class="flex flex-col sm:flex-row justify-between">
-            <div class="card-title">{biomarkerData.ShortName}
-              {#if biomarkerData.FundedSites.includes(testingSite)}
-                <span class="badge badge-md badge-success">FUNDED @ { abbr[testingSite] || testingSite }</span>
-              {/if} 
+        <div class="flex flex-col sm:flex-row justify-between gap-x-2">
+            <div class="flex flex-col sm:flex-row">
+              <div class="card-title">{biomarkerData.ShortName}</div>
+              <div>
+                {#if biomarkerData.FundedSites.includes(testingSite)}
+                  <span class="badge badge-md badge-success font-bold h-fit sm:ml-2 mb-2 sm:mb-0">FUNDED @ { abbr[testingSite] || testingSite }</span>
+                {/if}
+              </div>
             </div>
-             <div class="badge badge-lg badge-outline">{biomarkerData.OrganSite}</div>
+             <div class="badge badge-lg badge-outline h-fit">{biomarkerData.OrganSite}</div>
         </div>
         
         <div class="badge-accent my-2 p-1 pl-3"><b>{biomarkerData.Biomarkers}</b></div>
