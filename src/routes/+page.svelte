@@ -13,7 +13,7 @@
 	// Debug logging when biomarkers updated (after query)
 	$: console.log("/routes/+page.svelte -> biomarkers list updated, length:", biomarkers.length);
 
-	// BIOMARKER SEARCH
+	// BIOMARKER SEARCH AND FILTER PARAMETERS
 	/** @type {string} */
 	let searchString; // from textbox
 	/** @type {string} */
@@ -22,8 +22,8 @@
 	let checkboxFundedInHouse = false; // from Funded in house checkbox
 	/** @type {string}*/
 	let selectedTestingSite; // from select box
-	$: console.log("/routes/+page.svelte -> checkboxFundedInHouse", checkboxFundedInHouse);
-	$: console.log("/routes/+page.svelte -> selectedTestingSite", selectedTestingSite);
+	
+	let numSearchResults = biomarkers.length;
 
 	/**
 	 * Make GET call to /api/biomarkers API endpoint to search biomarker data
@@ -48,6 +48,7 @@
 		const result = await response.json();
 		console.log("+page.js GET from /api/biomarkers?search: ", result);
 
+		numSearchResults = result.length;
 		biomarkers = result;
 	}
 
@@ -61,7 +62,7 @@
 	const filterBiomarkers = (biomarkers, checkboxFundedInHouse, selectedTestingSite) => {
 		// apply funded in-house filter if checked
 		if (checkboxFundedInHouse) { 
-			return biomarkers.filter( (biomarker) => {
+			let filteredBiomarkers = biomarkers.filter( (biomarker) => {
 				if (biomarker.FundedSites.includes(selectedTestingSite) ) {
 					return true;
 				}
@@ -69,8 +70,13 @@
 					return false;
 				}
 			});
+			numSearchResults = filteredBiomarkers.length;
+			return filteredBiomarkers;
 		}
-		return biomarkers;
+		else {
+			numSearchResults = biomarkers.length;
+			return biomarkers;
+		}
 	};
 
 </script>
@@ -122,7 +128,7 @@
 	<!-- SEARCH RESULTS -->
 	<!-- Number of results found -->
 	<div class="flex justify-center">
-		<em class="text-accent">{biomarkers.length} results found</em>
+		<em class="text-accent">{numSearchResults} results found</em>
 	</div>
 
 	<!-- Search Result - Cards -->
@@ -137,12 +143,3 @@
 	{/each}
 	
 </div>
-
-
-
-<style>
-/* for troubleshooting element placement 
-p {
-	border: 1px solid white;
-} */
-</style>
